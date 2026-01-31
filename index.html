@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h2>Upload Your Photo</h2>
+<button id="start">Open Camera</button>
+<video id="video" width="320" height="240" autoplay></video>
+<button id="snap">Take Photo</button>
+<canvas id="canvas" width="320" height="240"></canvas>
+
+<script>
+const video = document.getElementById('video');
+document.getElementById('start').onclick = async () => {
+  const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+  video.srcObject = stream;
+};
+
+document.getElementById('snap').onclick = () => {
+  const canvas = document.getElementById('canvas');
+  canvas.getContext('2d').drawImage(video, 0, 0);
+  // here you can send the image to the server
+};
+</script>
+</body>
+</html>
